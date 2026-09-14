@@ -1,0 +1,1608 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso Para Ti | Portal de Información y Educación Financiera</title>
+    <meta name="description" content="Ingreso Para Ti ofrece información y educación financiera para ayudarte a planificar tus ingresos, proteger tu patrimonio y tomar decisiones informadas sobre créditos, ahorro e inversión.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           CONFIGURACIÓN - Paleta: Charcoal & Crimson
+           ============================================================ */
+        :root {
+            --color-primary: #1A1A1A;
+            --color-secondary: #2A2A2A;
+            --color-accent: #E63946;
+            --color-accent-light: #FF6B6B;
+            --color-text: #F8F9FA;
+            --color-text-dark: #1A1A1A;
+            --color-bg-light: #F5F5F5;
+            --color-white: #FFFFFF;
+            --color-warning: #E6A817;
+            --color-highlight: #E63946;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-premium: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        /* ============================================================
+           RESET Y BASE
+           ============================================================ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            background: var(--color-bg-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+        .section-padding { padding: 90px 0; }
+
+        /* ============================================================
+           TIPOGRAFÍA
+           ============================================================ */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        h1 { font-size: clamp(2.8rem, 6vw, 5rem); }
+        h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 0.5rem; }
+        h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+        .subtitle { font-size: 1.2rem; font-weight: 300; color: rgba(248,249,250,0.85); }
+        .text-accent { color: var(--color-accent); }
+        .text-center { text-align: center; }
+        .section-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-highlight);
+            border: 1px solid var(--color-highlight);
+            padding: 4px 16px;
+            border-radius: 30px;
+            margin-bottom: 16px;
+        }
+
+        /* ============================================================
+           BOTONES
+           ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            background: var(--color-highlight);
+            color: var(--color-white);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(230, 57, 70, 0.35);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-accent);
+            color: var(--color-text);
+        }
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+        .btn-white {
+            background: var(--color-white);
+            color: var(--color-primary);
+        }
+        .btn-white:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        /* ============================================================
+           HEADER / NAV
+           ============================================================ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: var(--transition-smooth);
+            background: transparent;
+        }
+        header.scrolled {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+            padding: 10px 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--color-accent); }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--color-text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: var(--transition-smooth);
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--color-accent); }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: var(--color-text);
+            transition: var(--transition-smooth);
+        }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--color-primary);
+        }
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .hero-slider .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            animation: kenBurns 20s infinite alternate;
+        }
+        .hero-slider .slide.active { opacity: 1; }
+        @keyframes kenBurns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.82);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--color-text);
+            max-width: 700px;
+            padding: 120px 0 60px;
+        }
+        .hero-content h1 { margin-bottom: 16px; }
+        .hero-content .subtitle { margin-bottom: 32px; }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* ============================================================
+           SECCIONES
+           ============================================================ */
+        .bg-dark { background: var(--color-primary); color: var(--color-text); }
+        .bg-light { background: var(--color-bg-light); }
+        .bg-secondary { background: var(--color-secondary); color: var(--color-text); }
+        .bg-card { background: var(--color-white); }
+
+        /* ============================================================
+           QUIENES SOMOS
+           ============================================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-premium);
+            height: 420px;
+            background: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80') center/cover no-repeat;
+        }
+        .about-text p { margin-bottom: 20px; color: #4a4a5a; }
+
+        /* ============================================================
+           MISIÓN Y VISIÓN
+           ============================================================ */
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .mv-card {
+            padding: 48px 40px;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+        .mv-card:hover { transform: scale(1.02); }
+        .mv-card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.88);
+            z-index: 0;
+        }
+        .mv-card .content { position: relative; z-index: 1; color: var(--color-text); }
+        .mv-card .content h3 { margin-bottom: 12px; }
+        .mv-mision { background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80'); }
+        .mv-vision { background-image: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80'); }
+
+        /* ============================================================
+           HISTORIA
+           ============================================================ */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            border-left: 3px solid var(--color-accent);
+            margin-top: 30px;
+        }
+        .timeline-item {
+            margin-bottom: 48px;
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -46px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            border: 3px solid var(--color-primary);
+        }
+        .timeline-item .year {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+        .timeline-item .title { font-weight: 600; font-size: 1.2rem; margin: 4px 0 8px; }
+        .timeline-item .desc { color: #5a5a6a; }
+
+        /* ============================================================
+           SERVICIOS
+           ============================================================ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--color-white);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            transition: var(--transition-smooth);
+            border-bottom: 4px solid transparent;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border-bottom-color: var(--color-highlight);
+        }
+        .service-card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .service-card h3 { margin-bottom: 10px; }
+        .service-card p { color: #5a5a6a; }
+
+        /* ============================================================
+           PROCESO
+           ============================================================ */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .step {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--color-white);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            position: relative;
+        }
+        .step .num {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-highlight);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        .step h4 { margin: 12px 0 8px; }
+
+        /* ============================================================
+           CIFRAS
+           ============================================================ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-item .number {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+        .stat-item .label { font-size: 1rem; color: rgba(248,249,250,0.85); }
+
+        /* ============================================================
+           GALERÍA
+           ============================================================ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .gallery-grid .gallery-item {
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            background-size: cover;
+            background-position: center;
+        }
+        .gallery-grid .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+
+        /* ============================================================
+           EQUIPO
+           ============================================================ */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .team-card {
+            background: var(--color-white);
+            padding: 30px 24px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            transition: var(--transition-smooth);
+        }
+        .team-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+        .team-card .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            background-size: cover;
+            background-position: center;
+        }
+        .team-card .role { font-size: 0.9rem; color: #8a8a9a; }
+
+        /* ============================================================
+           TESTIMONIOS
+           ============================================================ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: var(--color-white);
+            padding: 32px 28px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+        .testimonial-card .stars { color: var(--color-warning); font-size: 1.2rem; letter-spacing: 2px; }
+        .testimonial-card blockquote { font-style: italic; margin: 16px 0; color: #4a4a5a; }
+        .testimonial-card .author { font-weight: 600; }
+        .testimonial-card .role { font-size: 0.85rem; color: #8a8a9a; }
+
+        /* ============================================================
+           AVISO LEGAL
+           ============================================================ */
+        .legal-notice {
+            background: rgba(230, 57, 70, 0.08);
+            border-left: 4px solid var(--color-warning);
+            padding: 20px 28px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .legal-notice h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--color-warning);
+            margin-bottom: 6px;
+        }
+        .legal-notice p {
+            font-size: 0.85rem;
+            color: #5a5a6a;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           GOOGLE ADS SECTION
+           ============================================================ */
+        .google-ads-section { background: var(--color-white); }
+        .google-ads-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+        .ads-block {
+            background: var(--color-bg-light);
+            padding: 32px 28px;
+            border-radius: 16px;
+            border-left: 4px solid var(--color-highlight);
+        }
+        .ads-block h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ads-block h3 .badge {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 600;
+            background: var(--color-highlight);
+            color: var(--color-white);
+            padding: 2px 12px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+        }
+        .ads-block ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .ads-block ul li {
+            padding: 8px 14px;
+            background: var(--color-white);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: var(--transition-smooth);
+        }
+        .ads-block ul li:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .ads-block ul li .num {
+            font-weight: 700;
+            color: var(--color-highlight);
+            min-width: 24px;
+            font-size: 0.75rem;
+        }
+        .ads-block .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .ads-block .keywords .keyword {
+            background: var(--color-white);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(230, 57, 70, 0.2);
+            transition: var(--transition-smooth);
+        }
+        .ads-block .keywords .keyword:hover {
+            border-color: var(--color-highlight);
+            background: var(--color-bg-light);
+        }
+        .ads-desc-block ul li { padding: 10px 16px; }
+        .ads-desc-block ul li .badge-desc {
+            display: inline-block;
+            background: var(--color-highlight);
+            color: var(--color-white);
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 30px;
+            margin-right: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        /* ============================================================
+           FAQ
+           ============================================================ */
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding: 20px 0;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 0;
+            color: var(--color-primary);
+        }
+        .faq-question .arrow {
+            transition: var(--transition-smooth);
+            font-size: 1.4rem;
+        }
+        .faq-question.active .arrow { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+            color: #5a5a6a;
+        }
+        .faq-answer.open { max-height: 300px; padding-top: 12px; }
+
+        /* ============================================================
+           CONTACTO
+           ============================================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        .contact-info p { margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            background: var(--color-white);
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--color-highlight);
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+        }
+        .form-group .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .form-group .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 4px;
+            accent-color: var(--color-highlight);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        footer {
+            background: var(--color-primary);
+            color: var(--color-text);
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-grid h4 { margin-bottom: 16px; }
+        .footer-grid ul { list-style: none; }
+        .footer-grid ul li { margin-bottom: 10px; }
+        .footer-grid ul li a { color: rgba(248,249,250,0.7); transition: var(--transition-smooth); }
+        .footer-grid ul li a:hover { color: var(--color-accent); }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: rgba(248,249,250,0.5);
+        }
+        .footer-legal {
+            font-size: 0.7rem;
+            color: rgba(248,249,250,0.4);
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           COOKIES BANNER
+           ============================================================ */
+        .cookies-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--color-primary);
+            color: var(--color-text);
+            padding: 24px 0;
+            z-index: 999;
+            transform: translateY(100%);
+            transition: transform 0.6s ease;
+        }
+        .cookies-banner.show { transform: translateY(0); }
+        .cookies-banner .inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .cookies-banner p { max-width: 60%; font-size: 0.9rem; opacity: 0.8; }
+        .cookies-banner .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .cookies-banner .btn-sm { padding: 8px 24px; font-size: 0.85rem; }
+
+        /* ============================================================
+           WHATSAPP FLOAT
+           ============================================================ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.35);
+            transition: var(--transition-smooth);
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.45);
+        }
+
+        /* ============================================================
+           LIGHTBOX
+           ============================================================ */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            background: none;
+            border: none;
+        }
+        .lightbox-close:hover { transform: rotate(90deg); }
+
+        /* ============================================================
+           REVEAL
+           ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 992px) {
+            .about-grid, .mv-grid, .contact-grid, .google-ads-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: var(--color-primary);
+                flex-direction: column;
+                padding: 80px 40px 40px;
+                transition: var(--transition-smooth);
+                gap: 24px;
+                box-shadow: -8px 0 40px rgba(0,0,0,0.3);
+            }
+            .nav-links.open { right: 0; }
+            .menu-toggle { display: flex; }
+            .cookies-banner p { max-width: 100%; }
+        }
+        @media (max-width: 768px) {
+            .services-grid, .testimonials-grid, .gallery-grid, .team-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .hero-content h1 { font-size: 2.6rem; }
+            .section-padding { padding: 60px 0; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; align-items: stretch; }
+            .hero-buttons .btn { text-align: center; justify-content: center; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 1.6rem; bottom: 20px; right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">Ingreso <span>Para Ti</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#proceso">Proceso</a></li>
+                <li><a href="#historia">Historia</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#google-ads">Google Ads</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#contacto" class="btn btn-primary-custom" style="background:var(--color-highlight);color:var(--color-white);padding:10px 28px;border-radius:50px;font-weight:600;">Información</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80');"></div>
+            <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1600&q=80');"></div>
+            <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80');"></div>
+            <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=1600&q=80');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <span class="section-tag" style="border-color:var(--color-accent);color:var(--color-accent);">Información y Educación Financiera</span>
+            <h1>Tu ingreso, <span class="text-accent">para ti y tu futuro</span></h1>
+            <p class="subtitle">En Ingreso Para Ti te brindamos información y educación financiera para ayudarte a planificar tus ingresos, proteger tu patrimonio y tomar decisiones informadas sobre créditos, ahorro e inversión.</p>
+            <div class="hero-buttons">
+                <a href="#nosotros" class="btn">Conocer más</a>
+                <a href="#contacto" class="btn btn-outline">Solicitar asesoría</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NOSOTROS ===== -->
+    <section id="nosotros" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Quiénes Somos</span>
+                <h2>Información clara para <span class="text-accent">tu ingreso</span></h2>
+                <p style="max-width:680px;margin:12px auto 0;color:#5a5a6a;">Ingreso Para Ti es un portal de información y educación financiera creado para ayudarte a entender tus opciones y cuidar tus ingresos.</p>
+            </div>
+
+            <div class="legal-notice reveal">
+                <h4>⚠️ Aviso Importante</h4>
+                <p><strong>Ingreso Para Ti</strong> es una empresa de asesoría independiente. No somos un banco ni representamos a ninguna entidad bancaria oficial. Los productos y servicios financieros son ofrecidos exclusivamente por las entidades bancarias autorizadas. Las aprobaciones de crédito están sujetas a la evaluación de cada entidad financiera.</p>
+            </div>
+
+            <div class="about-grid" style="margin-top:30px;">
+                <div class="about-text reveal">
+                    <p><strong>Ingreso Para Ti</strong> es un portal de información y educación financiera fundado en 2021. Nos especializamos en brindar información transparente, comparativas prácticas y educación financiera para que puedas explorar alternativas y proteger tus ingresos.</p>
+                    <p>Nuestro equipo está conformado por profesionales con experiencia en finanzas, comunicación y educación. Trabajamos con un enfoque accesible, claro y honesto, para que cada persona pueda entender sus opciones sin tecnicismos innecesarios.</p>
+                    <p>Más de 300 personas han confiado en nosotros para orientar sus decisiones financieras. Nuestro compromiso es brindar información útil y comprensible que contribuya a tu estabilidad y bienestar económico.</p>
+                    <a href="#contacto" class="btn" style="margin-top:12px;">Hablemos de tus opciones</a>
+                </div>
+                <div class="about-image reveal"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VALORES ===== -->
+    <section id="valores" class="section-padding bg-dark">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Nuestros Valores</span>
+                <h2 style="color:var(--color-text);">Principios que <span class="text-accent">nos guían</span></h2>
+            </div>
+            <div class="values-grid" style="margin-top:48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+                <div class="value-card reveal" style="background: var(--color-secondary); padding: 30px 24px; border-radius: 16px; text-align: center;">
+                    <span class="icon" style="font-size: 2.4rem; display: block; margin-bottom: 12px;">🔒</span>
+                    <h4 style="color: var(--color-text);">Seguridad</h4>
+                    <p style="color: rgba(248,249,250,0.75);">Información confiable para proteger tus ingresos y decisiones.</p>
+                </div>
+                <div class="value-card reveal" style="background: var(--color-secondary); padding: 30px 24px; border-radius: 16px; text-align: center;">
+                    <span class="icon" style="font-size: 2.4rem; display: block; margin-bottom: 12px;">🤝</span>
+                    <h4 style="color: var(--color-text);">Confianza</h4>
+                    <p style="color: rgba(248,249,250,0.75);">Relaciones basadas en la honestidad y el cumplimiento.</p>
+                </div>
+                <div class="value-card reveal" style="background: var(--color-secondary); padding: 30px 24px; border-radius: 16px; text-align: center;">
+                    <span class="icon" style="font-size: 2.4rem; display: block; margin-bottom: 12px;">📚</span>
+                    <h4 style="color: var(--color-text);">Educación</h4>
+                    <p style="color: rgba(248,249,250,0.75);">Aprendizaje continuo para tomar mejores decisiones.</p>
+                </div>
+                <div class="value-card reveal" style="background: var(--color-secondary); padding: 30px 24px; border-radius: 16px; text-align: center;">
+                    <span class="icon" style="font-size: 2.4rem; display: block; margin-bottom: 12px;">🎯</span>
+                    <h4 style="color: var(--color-text);">Orientación</h4>
+                    <p style="color: rgba(248,249,250,0.75);">Acompañamiento para cuidar tu ingreso y tus metas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MISIÓN Y VISIÓN ===== -->
+    <section id="mision-vision" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Propósito</span>
+                <h2>Misión y <span class="text-accent">Visión</span></h2>
+            </div>
+            <div class="mv-grid" style="margin-top:48px;">
+                <div class="mv-card mv-mision reveal">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h3>Misión</h3>
+                        <p>Brindar información y educación financiera clara y accesible, ayudando a las personas a proteger sus ingresos, planificar su futuro y tomar decisiones informadas para alcanzar sus metas económicas.</p>
+                    </div>
+                </div>
+                <div class="mv-card mv-vision reveal">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h3>Visión</h3>
+                        <p>Ser el portal de referencia en información y educación financiera para ingresos seguros, reconocido por su transparencia y contribución al bienestar económico de las personas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HISTORIA ===== -->
+    <section id="historia" class="section-padding bg-dark">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Nuestra Historia</span>
+                <h2 style="color:var(--color-text);">Trayectoria de <span class="text-accent">éxito</span></h2>
+                <p style="max-width:640px;margin:12px auto 0;color:rgba(255,255,255,0.6);">Más de 4 años ayudando a las personas a proteger sus ingresos.</p>
+            </div>
+            <div class="timeline reveal" style="max-width:800px;margin:40px auto 0;color:var(--color-text);">
+                <div class="timeline-item">
+                    <div class="year">2021</div>
+                    <div class="title">Fundación de Ingreso Para Ti</div>
+                    <div class="desc" style="color:rgba(255,255,255,0.6);">Nace el portal con la visión de ofrecer información financiera clara y útil.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2022</div>
+                    <div class="title">Ampliación de contenidos</div>
+                    <div class="desc" style="color:rgba(255,255,255,0.6);">Incorporamos guías sobre planificación, ahorro y protección de ingresos.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2023</div>
+                    <div class="title">Asesorías personalizadas</div>
+                    <div class="desc" style="color:rgba(255,255,255,0.6);">Iniciamos servicios de orientación personalizada para cada usuario.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2024</div>
+                    <div class="title">Reconocimiento del sector</div>
+                    <div class="desc" style="color:rgba(255,255,255,0.6);">Recibimos reconocimiento por nuestra labor educativa en finanzas.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2025</div>
+                    <div class="title">Expansión digital</div>
+                    <div class="desc" style="color:rgba(255,255,255,0.6);">Lanzamos nuevas herramientas para planificar ingresos con mayor seguridad.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICIOS ===== -->
+    <section id="servicios" class="section-padding bg-white">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Nuestros Servicios</span>
+                <h2>Soluciones para <span class="text-accent">tu ingreso</span></h2>
+                <p style="max-width:640px;margin:12px auto 0;color:#5a5a6a;">Descubre los servicios con los que te ayudamos a proteger y planificar tus ingresos.</p>
+            </div>
+            <div class="services-grid" style="margin-top:48px;">
+                <div class="service-card reveal">
+                    <span class="icon">📊</span>
+                    <h3>Información Financiera</h3>
+                    <p>Contenidos claros sobre productos y servicios financieros disponibles en el mercado.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="icon">🔒</span>
+                    <h3>Protección de Ingresos</h3>
+                    <p>Información clave para proteger tus ingresos y tu patrimonio ante imprevistos.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="icon">📚</span>
+                    <h3>Educación Financiera</h3>
+                    <p>Aprende los fundamentos de las finanzas personales para tomar mejores decisiones.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="icon">💰</span>
+                    <h3>Presupuesto Personal</h3>
+                    <p>Diseña un presupuesto realista alineado con tus metas y tu nivel de ingresos.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="icon">🎯</span>
+                    <h3>Metas Financieras</h3>
+                    <p>Define metas claras y descubre qué opciones se ajustan a tu situación.</p>
+                </div>
+                <div class="service-card reveal">
+                    <span class="icon">🔄</span>
+                    <h3>Reestructuración Financiera</h3>
+                    <p>Información para reorganizar tus finanzas y recuperar el control de tus ingresos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROCESO ===== -->
+    <section id="proceso" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Cómo Trabajamos</span>
+                <h2>Metodología <span class="text-accent">transparente</span></h2>
+                <p style="max-width:640px;margin:12px auto 0;color:#5a5a6a;">Un proceso simple para entender y proteger tus ingresos.</p>
+            </div>
+            <div class="process-steps">
+                <div class="step reveal">
+                    <span class="num">01</span>
+                    <h4>Consulta</h4>
+                    <p style="color:#5a5a6a;">Cuéntanos tu situación y objetivos de ingreso.</p>
+                </div>
+                <div class="step reveal">
+                    <span class="num">02</span>
+                    <h4>Exploración</h4>
+                    <p style="color:#5a5a6a;">Conoce alternativas de ahorro, protección e inversión.</p>
+                </div>
+                <div class="step reveal">
+                    <span class="num">03</span>
+                    <h4>Comparación</h4>
+                    <p style="color:#5a5a6a;">Analiza beneficios, costos y requisitos de cada opción.</p>
+                </div>
+                <div class="step reveal">
+                    <span class="num">04</span>
+                    <h4>Decisión</h4>
+                    <p style="color:#5a5a6a;">Elige con criterio y sigue avanzando hacia tus metas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ESTADÍSTICAS ===== -->
+    <section id="estadisticas" class="section-padding bg-secondary">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <div class="number" data-count="300">0</div>
+                    <div class="label">Personas orientadas</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="number" data-count="4">0</div>
+                    <div class="label">Años de experiencia</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="number" data-count="92">0</div>
+                    <div class="label">% de satisfacción</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="number" data-count="100">0</div>
+                    <div class="label">% de transparencia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALERÍA ===== -->
+    <section id="galeria" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Galería</span>
+                <h2>Nuestro <span class="text-accent">trabajo</span></h2>
+            </div>
+            <div class="gallery-grid" style="margin-top:40px;">
+                <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80');"></div>
+                <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=80');"></div>
+                <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80');"></div>
+                <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=600&q=80');"></div>
+                <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80');"></div>
+                <div class="gallery-item reveal" style="background-image:url('https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=80');"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EQUIPO ===== -->
+    <section id="equipo" class="section-padding bg-white">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Equipo</span>
+                <h2>Profesionales <span class="text-accent">de confianza</span></h2>
+                <p style="max-width:640px;margin:12px auto 0;color:#5a5a6a;">Un equipo dedicado a brindarte información clara y útil para proteger tus ingresos.</p>
+            </div>
+            <div class="team-grid" style="margin-top:48px;">
+                <div class="team-card reveal">
+                    <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80');"></div>
+                    <h4>Victor Alfonso Nova León</h4>
+                    <div class="role">CEO & Fundador</div>
+                    <p style="color:#5a5a6a;font-size:0.9rem;margin-top:8px;">Visión estratégica y liderazgo en el sector financiero.</p>
+                </div>
+                <div class="team-card reveal">
+                    <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80');"></div>
+                    <h4>María del Pilar Rojas</h4>
+                    <div class="role">Directora de Educación</div>
+                    <p style="color:#5a5a6a;font-size:0.9rem;margin-top:8px;">Experta en educación y orientación financiera.</p>
+                </div>
+                <div class="team-card reveal">
+                    <div class="avatar" style="background-image:url('https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=200&q=80');"></div>
+                    <h4>Andrés Felipe Sánchez</h4>
+                    <div class="role">Analista Financiero</div>
+                    <p style="color:#5a5a6a;font-size:0.9rem;margin-top:8px;">Especialista en evaluación de alternativas financieras.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIOS ===== -->
+    <section id="testimonios" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Testimonios</span>
+                <h2>Lo que dicen <span class="text-accent">nuestros usuarios</span></h2>
+            </div>
+            <div class="testimonials-grid" style="margin-top:48px;">
+                <div class="testimonial-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>“Ingreso Para Ti me ayudó a entender cómo proteger mis ingresos antes de tomar decisiones. Información clara y práctica.”</blockquote>
+                    <div class="author">Carlos Eduardo Ramírez</div>
+                    <div class="role">Usuario</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>“Gracias a sus comparativas, pude planificar mejor mi presupuesto. Excelente orientación y contenido.”</blockquote>
+                    <div class="author">Laura Vanessa Gómez</div>
+                    <div class="role">Usuario recurrente</div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>“Su enfoque transparente marca la diferencia. Recomiendo este portal para informarse bien.”</blockquote>
+                    <div class="author">Ana Lucía Giraldo</div>
+                    <div class="role">Usuario recurrente</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GOOGLE ADS SECTION ===== -->
+    <section id="google-ads" class="section-padding google-ads-section">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Google Ads</span>
+                <h2>Recursos para <span class="text-accent">campañas publicitarias</span></h2>
+                <p style="max-width:680px;margin:12px auto 0;color:#5a5a6a;">Títulos, descripciones y palabras clave sugeridos para campañas de Ingreso Para Ti.</p>
+            </div>
+            <div class="google-ads-grid">
+                <div class="ads-block reveal">
+                    <h3>📌 15 Títulos para Google Ads <span class="badge">H1</span></h3>
+                    <ul>
+                        <li><span class="num">01</span> Ingreso Para Ti</li>
+                        <li><span class="num">02</span> Información Financiera</li>
+                        <li><span class="num">03</span> Educación Financiera</li>
+                        <li><span class="num">04</span> Protege tus Ingresos</li>
+                        <li><span class="num">05</span> Planifica tu Presupuesto</li>
+                        <li><span class="num">06</span> Decisiones Informadas</li>
+                        <li><span class="num">07</span> Opciones de Ahorro</li>
+                        <li><span class="num">08</span> Ahorro Inteligente</li>
+                        <li><span class="num">09</span> Opciones de Crédito</li>
+                        <li><span class="num">10</span> Orientación Financiera</li>
+                        <li><span class="num">11</span> Transparencia Financiera</li>
+                        <li><span class="num">12</span> Metas Financieras</li>
+                        <li><span class="num">13</span> Reestructura tu Economía</li>
+                        <li><span class="num">14</span> Bienestar Económico</li>
+                        <li><span class="num">15</span> Tu Futuro Financiero</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="ads-block ads-desc-block reveal" style="margin-bottom:30px;">
+                        <h3>📝 4 Descripciones para Google Ads <span class="badge">H2</span></h3>
+                        <ul>
+                            <li><span class="badge-desc">D1</span> Información y educación financiera para proteger tus ingresos. Consulta tus opciones con claridad.</li>
+                            <li><span class="badge-desc">D2</span> Aprende a planificar tu presupuesto y elegir alternativas financieras con criterio.</li>
+                            <li><span class="badge-desc">D3</span> Orientación transparente sobre ahorro, crédito e inversión. Infórmate hoy mismo.</li>
+                            <li><span class="badge-desc">D4</span> Protege y planifica tus ingresos con información clara, práctica y sin complicaciones.</li>
+                        </ul>
+                    </div>
+
+                    <div class="ads-block reveal">
+                        <h3>🔑 10 Palabras Clave para Google Ads <span class="badge">KW</span></h3>
+                        <div class="keywords">
+                            <span class="keyword">protección de ingresos</span>
+                            <span class="keyword">información financiera</span>
+                            <span class="keyword">educación financiera</span>
+                            <span class="keyword">planificación de presupuesto</span>
+                            <span class="keyword">opciones de ahorro</span>
+                            <span class="keyword">opciones de crédito</span>
+                            <span class="keyword">asesoría financiera</span>
+                            <span class="keyword">finanzas personales</span>
+                            <span class="keyword">metas financieras</span>
+                            <span class="keyword">bienestar económico</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Preguntas Frecuentes</span>
+                <h2>Resolvemos tus <span class="text-accent">dudas</span></h2>
+            </div>
+            <div class="faq-list" style="margin-top:40px;">
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        ¿Qué tipo de información financiera ofrecen?
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ofrecemos contenidos claros sobre productos y servicios financieros, guías para proteger tus ingresos, educación financiera básica y asesorías personalizadas para orientar tus decisiones.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        ¿Cómo funciona el proceso de orientación?
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Incluye una consulta inicial, exploración de alternativas que se ajusten a tu situación, comparación de beneficios y requisitos, y recomendaciones para decidir con criterio.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        ¿Es confidencial la información que comparto?
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, toda la información que compartes con nosotros es estrictamente confidencial y se maneja con la más alta seguridad y ética profesional.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        ¿Ofrecen créditos directamente?
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No. Somos un portal de información y educación financiera. Los productos y servicios financieros son ofrecidos exclusivamente por entidades bancarias autorizadas.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question">
+                        ¿Cuál es el costo de la orientación?
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nuestra consulta inicial es completamente gratuita. Ofrecemos planes de orientación con costos transparentes y adaptados a tus necesidades.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="section-padding bg-white">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag">Contacto</span>
+                <h2>Hablemos de tu <span class="text-accent">ingreso</span></h2>
+                <p style="max-width:640px;margin:12px auto 0;color:#5a5a6a;">Estamos listos para ayudarte a entender tus alternativas financieras y proteger tus ingresos.</p>
+            </div>
+
+            <div class="legal-notice reveal" style="margin-bottom:30px;">
+                <h4>⚠️ Aviso Importante</h4>
+                <p><strong>Ingreso Para Ti</strong> es una empresa de asesoría independiente. No somos un banco ni representamos a ninguna entidad bancaria oficial. Los productos y servicios financieros son ofrecidos exclusivamente por las entidades bancarias autorizadas. Las aprobaciones de crédito están sujetas a la evaluación de cada entidad financiera.</p>
+            </div>
+
+            <div class="contact-grid" style="margin-top:0;">
+                <div class="contact-info reveal">
+                    <h3>Información de contacto</h3>
+                    <p><strong>📍 Dirección:</strong> Av. Financiera #789, Centro</p>
+                    <p><strong>📞 Celular / WhatsApp:</strong> <a href="https://wa.me/573217657995" style="color:var(--color-highlight);font-weight:600;">+57 321 765-7995</a></p>
+                    <p><strong>✉️ Correo electrónico:</strong> <a href="mailto:info@ingresoparati.com" style="color:var(--color-highlight);font-weight:600;">info@ingresoparati.com</a></p>
+                    <p style="margin-top:20px;font-size:0.9rem;color:#5a5a6a;">En Ingreso Para Ti valoramos tu tiempo y tu confianza. Respondemos en menos de 24 horas.</p>
+                </div>
+                <div class="contact-form reveal">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" placeholder="Tu número de teléfono">
+                        </div>
+                        <div class="form-group">
+                            <label for="objetivo">¿Qué necesitas consultar?</label>
+                            <select id="objetivo">
+                                <option value="">Selecciona una opción</option>
+                                <option value="ingreso">Protección de ingresos</option>
+                                <option value="ahorro">Opciones de ahorro</option>
+                                <option value="credito">Opciones de crédito</option>
+                                <option value="presupuesto">Presupuesto personal</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" rows="4" placeholder="Cuéntanos qué necesitas consultar..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terminos" required>
+                                <label for="terminos" style="font-weight:400;">Acepto los <a href="#terminos" style="color:var(--color-highlight);font-weight:600;">Términos y condiciones</a> y la <a href="#privacidad" style="color:var(--color-highlight);font-weight:600;">Política de privacidad</a></label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn" style="width:100%;justify-content:center;">Enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="font-family:var(--font-heading);font-size:1.6rem;">Ingreso <span style="color:var(--color-accent);">Para Ti</span></h3>
+                    <p style="color:rgba(248,249,250,0.65);margin-top:12px;">Portal de información y educación financiera. Protege y planifica tus ingresos con información clara.</p>
+                    <div style="margin-top:16px;display:flex;gap:16px;">
+                        <a href="#" style="color:rgba(248,249,250,0.65);">LinkedIn</a>
+                        <a href="#" style="color:rgba(248,249,250,0.65);">Twitter</a>
+                        <a href="#" style="color:rgba(248,249,250,0.65);">Instagram</a>
+                        <a href="#" style="color:rgba(248,249,250,0.65);">Facebook</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Enlaces rápidos</h4>
+                    <ul>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#proceso">Proceso</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#servicios">Información financiera</a></li>
+                        <li><a href="#servicios">Protección de ingresos</a></li>
+                        <li><a href="#servicios">Educación financiera</a></li>
+                        <li><a href="#servicios">Asesoría personalizada</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#terminos">Términos y condiciones</a></li>
+                        <li><a href="#privacidad">Política de privacidad</a></li>
+                        <li><a href="#cookies">Política de cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2025 Ingreso Para Ti. Todos los derechos reservados.</span>
+            </div>
+            <div class="footer-legal">
+                <strong>⚠️ Aviso Importante:</strong> Ingreso Para Ti es una empresa de asesoría independiente. No somos un banco ni representamos a ninguna entidad bancaria oficial. Los productos y servicios financieros son ofrecidos exclusivamente por las entidades bancarias autorizadas. Las aprobaciones de crédito están sujetas a la evaluación de cada entidad financiera.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== COOKIES BANNER ===== -->
+    <div class="cookies-banner" id="cookiesBanner">
+        <div class="container inner">
+            <p>Utilizamos cookies para mejorar tu experiencia en nuestro sitio web. Al continuar navegando, aceptas nuestra <a href="#cookies" style="color:var(--color-accent);">política de cookies</a>.</p>
+            <div class="actions">
+                <button class="btn btn-sm btn-white" id="acceptCookies">Aceptar</button>
+                <button class="btn btn-sm btn-outline" id="rejectCookies" style="border-color:rgba(255,255,255,0.3);color:rgba(248,249,250,0.75);">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== WHATSAPP FLOAT ===== -->
+    <a href="https://wa.me/573217657995" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="white"/>
+        </svg>
+    </a>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="closeLightbox">✕</button>
+        <img src="" alt="Imagen ampliada" id="lightboxImage">
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        const CONFIG = {
+            empresa: 'Ingreso Para Ti',
+            rubro: 'Información y educación financiera',
+            direccion: 'Av. Financiera #789, Centro',
+            whatsapp: '+573217657995',
+            correo: 'info@ingresoparati.com'
+        };
+
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        const slides = document.querySelectorAll('.hero-slider .slide');
+        let currentSlide = 0;
+        setInterval(() => {
+            slides.forEach(s => s.classList.remove('active'));
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
+
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        const counters = document.querySelectorAll('.stat-item .number');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.dataset.count);
+                    const duration = 2000;
+                    const startTime = performance.now();
+                    const updateCounter = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const value = Math.floor(progress * target);
+                        entry.target.textContent = value + (target > 100 ? '+' : '%');
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            entry.target.textContent = target + (target > 100 ? '+' : '%');
+                        }
+                    };
+                    requestAnimationFrame(updateCounter);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        counters.forEach(el => counterObserver.observe(el));
+
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const answer = btn.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+                document.querySelectorAll('.faq-question').forEach(b => b.classList.remove('active'));
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    btn.classList.add('active');
+                }
+            });
+        });
+
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const closeLightbox = document.getElementById('closeLightbox');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const bg = item.style.backgroundImage;
+                const url = bg.replace(/.*url\(["']?/, '').replace(/["']?\).*/, '');
+                lightboxImage.src = url;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeLightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        const cookiesBanner = document.getElementById('cookiesBanner');
+        const acceptCookies = document.getElementById('acceptCookies');
+        const rejectCookies = document.getElementById('rejectCookies');
+
+        if (!localStorage.getItem('cookiesAccepted')) {
+            cookiesBanner.classList.add('show');
+        }
+
+        acceptCookies.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookiesBanner.classList.remove('show');
+        });
+
+        rejectCookies.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'false');
+            cookiesBanner.classList.remove('show');
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const mensaje = document.getElementById('mensaje').value.trim();
+            const terminos = document.getElementById('terminos').checked;
+
+            if (!nombre || !email || !mensaje || !terminos) {
+                alert('Por favor, completa todos los campos y acepta los términos y condiciones.');
+                return;
+            }
+
+            alert('¡Mensaje enviado con éxito! En breve nos pondremos en contacto contigo.');
+            document.getElementById('contactForm').reset();
+        });
+    </script>
+</body>
+</html>
