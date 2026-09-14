@@ -1,0 +1,195 @@
+
+function tabDetailProduct(sender) {
+
+    var parentItemTabProduct = document.getElementsByClassName("innerTabsfixed");
+    var itemTabProduct = parentItemTabProduct[0].querySelectorAll("div");
+    for (i = 0; i < itemTabProduct.length; i++) {
+        if (i == sender) {
+            itemTabProduct[i].className = 'tabs-productDetail tab_active';
+        }
+        else {
+            itemTabProduct[i].className = 'tabs-productDetail';
+        }
+    }
+
+    var parentOtherItemTabProduct = document.getElementsByClassName("containerTabsDetailProducts");
+    var otherItemTabProduct = parentOtherItemTabProduct[0].querySelectorAll("div");
+    for (i = 0; i < otherItemTabProduct.length; i++) {
+        if (i == sender) {
+            otherItemTabProduct[i].className = 'tabs-productDetail tab_active';
+        }
+        else {
+            otherItemTabProduct[i].className = 'tabs-productDetail';
+        }
+    }
+
+}
+
+function tabsDetailProduct(sender) {
+    var parentItemTabProduct = document.getElementsByClassName("innerTabsfixed");
+    var itemTabProduct = parentItemTabProduct[0].querySelectorAll("div");
+    for (i = 0; i < itemTabProduct.length; i++) {
+        if (i == sender) {
+            itemTabProduct[i].className = 'tabs-productDetail threeTabs tab_active';
+        }
+        else {
+            itemTabProduct[i].className = 'tabs-productDetail threeTabs';
+        }
+    }
+
+    var parentOtherItemTabProduct = document.getElementsByClassName("containerTabsDetailProducts");
+    var otherItemTabProduct = parentOtherItemTabProduct[0].querySelectorAll("div");
+    for (i = 0; i < otherItemTabProduct.length; i++) {
+        if (i == sender) {
+            otherItemTabProduct[i].className = 'tabs-productDetail threeTabs tab_active';
+        }
+        else {
+            otherItemTabProduct[i].className = 'tabs-productDetail threeTabs';
+        }
+    }
+
+}
+
+window.addEventListener('load', function () {
+    //your code right here;
+
+    var cont = document.getElementsByClassName("containerDetailProducts");
+    content1 = cont[0].querySelectorAll("div");
+
+    var contFixedTabs = document.getElementsByClassName("innerTabsfixed");
+    contFixedTabs[0].innerHTML = content1[0].innerHTML;
+
+    //Tabs Fixed
+    var distance = $('.containerTabsDetailProducts').offset().top;
+
+    var $navFixed = $('.tabsDetailProduct-fixed-top');
+    var $nav2Fixed = $('.bpProductsFixed');
+    $(window).scroll(function () {
+
+        if ($(this).scrollTop() >= distance) {
+            $navFixed.removeClass('hide');
+            $nav2Fixed.removeClass('hide');
+        } else {
+            $navFixed.addClass('hide');
+            $nav2Fixed.addClass('hide');
+            $('.containerTabsDetailProducts .tabs-productDetail').removeClass('tab_active');
+            $('.containerTabsDetailProducts .tabs-productDetail:first-child').addClass('tab_active');
+        }
+    });
+
+
+
+    //Tab Detail Product
+    switch ($(".containerTabsDetailProducts .tabs-productDetail").length) {
+        case 2:
+            $(".tabs-productDetail").css('width', '50%');
+            break;
+        case 4:
+            $(".tabs-productDetail").css('width', '25%');
+            break;
+        case 5:
+            $(".tabs-productDetail").css('width', '20%');
+            break;
+    }
+
+
+    // Cache selectors
+    var lastId,
+        topMenuFixed = $('.innerTabsfixed'),
+        topMenuFixedHeight = topMenuFixed.outerHeight() + 20,
+        // All list items
+        menuItems = topMenuFixed.find('a'),
+        // Anchors corresponding to menu items
+        scrollItems = menuItems.map(function () {
+            var item = $($(this).attr("href"));
+            if (item.length) { return item; }
+        });
+
+    // Bind click handler to menu items
+    // so we can get a fancy scroll animation
+    menuItems.click(function (e) {
+        var href = $(this).attr("href"),
+            offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuFixedHeight + (-130);
+        $('html, body').stop().animate({
+            scrollTop: offsetTop
+        }, 500);
+        e.preventDefault();
+    });
+
+    $('.containerTabsDetailProducts .tabs-productDetail a, a.text-link-white, a.goToAnchor, a#btnTop').click(function (e) {
+        var href = $(this).attr("href"),
+            offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuFixedHeight + (-130);
+        menuItems.parent().parent().removeClass("tab_active");
+        menuItems.filter("[href='" + href + "']").parent().parent().addClass("tab_active");
+        $('html, body').stop().animate({
+            scrollTop: offsetTop
+        }, 1000);
+        e.preventDefault();
+
+    });
+
+    // Bind to scroll
+    $(window).scroll(function () {
+        // Get container scroll position
+        var fromTop = $(this).scrollTop() + topMenuFixedHeight + 140;
+
+        // Get id of current scroll item
+        var cur = scrollItems.map(function () {
+            if ($(this).offset().top < fromTop)
+                return this;
+        });
+        // Get the id of the current element
+        cur = cur[cur.length - 1];
+        var id = cur && cur.length ? cur[0].id : "";
+
+        if (lastId !== id) {
+            lastId = id;
+            // Set/remove active class
+            menuItems.parent().parent().removeClass("tab_active");
+            menuItems.filter("[href='#" + id + "']").parent().parent().addClass("tab_active");
+        }
+    });
+
+    /*cardDetailPage*/
+    $('.nolastSeparator').parent().siblings('.separator-bottom-white').hide();
+    //$('.wraperPacificard .boxText .links a').addClass('col-md-6 col-sm-6 col-xs-12');
+    $('.wraperZoneRequirements').children('.col-md-7').children('.col-md-6').addClass('col-sm-6');
+    //$('.wraperZoneRequirements').children('.col-md-7').addClass('no-padding');
+
+    //Fixed
+    if ($('.zoneProductFixed').length == 0) {
+        $(".tabsDetailProduct-fixed-top").css('top', '38px');
+    }
+
+}, false);
+
+//Logo VISA Y MASTERCARD
+$('img.brand-card').each(function () {
+    //$(this).parent().addClass('wrap-input100');
+    var obt = $(this).attr("src");
+    if (obt.substr(-14) == "mc-vs-logo.svg") {
+        $(this).parent().addClass('wrap-input100');
+    }
+});
+
+
+
+//link form
+var tForm = setInterval(function () {
+    if ($('.modal-form-weCallYou').length) {
+        clearInterval(tForm);
+        $('.modal-form-weCallYou').click(function (e) {
+            e.preventDefault();
+            var href = $('.content-banner .links .button-blue-medium').attr('href');
+            console.log(href);
+            if (href == undefined) {
+                window.open(window.location.origin + '/nosotros-te-llamamos', '_blank');
+            } else {
+                href = href.split('=');
+                window.open(window.location.origin + '/nosotros-te-llamamos?p=' + href[1], '_blank');
+            }
+            //window.location.assign("/nosotros-te-llamamos?p="+href[1]);
+
+        });
+    }
+}, 100);
